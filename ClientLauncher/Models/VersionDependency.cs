@@ -1,4 +1,6 @@
-﻿namespace ClientLauncher.Models;
+﻿using System;
+
+namespace ClientLauncher.Models;
 
 public partial class VersionDependency
 {

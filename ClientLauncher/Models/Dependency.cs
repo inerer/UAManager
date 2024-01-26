@@ -1,4 +1,7 @@
-﻿namespace ClientLauncher.Models;
+﻿using System;
+using System.Collections.Generic;
+
+namespace ClientLauncher.Models;
 
 public partial class Dependency
 {
