@@ -4,7 +4,8 @@
              xmlns:ui="http://schemas.modernwpf.com/2019"
              xmlns:modernWpf="http://schemas.modernwpf.com/2019"
              xmlns:local="clr-namespace:LoadLauncher"
-             StartupUri="MainWindow.xaml">
+             StartupUri="MainWindow.xaml"
+             Startup="App_OnStartup">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

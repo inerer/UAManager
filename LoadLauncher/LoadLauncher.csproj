@@ -13,4 +13,8 @@
       <PackageReference Include="ModernWpfUI.MahApps" Version="0.9.5" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\UAM.Core\UAM.Core.csproj" />
+    </ItemGroup>
+
 </Project>
