@@ -1,6 +1,6 @@
 ﻿using System.Net.Http;
 
-namespace ClientLauncher.Api;
+namespace UAM.Core.Api;
 
 public class ApiBase
 {

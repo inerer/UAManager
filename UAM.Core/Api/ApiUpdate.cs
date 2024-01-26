@@ -3,7 +3,7 @@ using System.Text.Json;
 using System.Windows;
 using Version = ClientLauncher.Models.Version;
 
-namespace ClientLauncher.Api;
+namespace UAM.Core.Api;
 
 public class ApiUpdate : ApiBase
 {
