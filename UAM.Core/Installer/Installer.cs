@@ -11,12 +11,12 @@ public class Installer
 
     public async Task Install()
     {
-        var arguments = Environment.GetCommandLineArgs();
+        // var arguments = Environment.GetCommandLineArgs();
+        //
+        // if (arguments.Length < 2)
+        //     throw new ArgumentNullException("version not specified");
 
-        if (arguments.Length < 2)
-            throw new ArgumentNullException("version not specified");
-
-        await _apiUpdate.GetUpdate(arguments[1]);
+        await _apiUpdate.GetUpdate("1.0.0");
 
         var path = Environment.CurrentDirectory;
 

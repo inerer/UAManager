@@ -9,16 +9,23 @@
       Title="SettingsPage" Height="450" Width="800">
     <Grid ShowGridLines="True">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        
-        <StackPanel Grid.Column="3"
-                    >
+
+        <StackPanel Grid.Column="0"
+                    Margin="5">
             <TextBlock Text="Настройки"
-                   FontSize="20"/>
+                       FontSize="20" />
+
+            <TextBox Name="ServerTextBox"
+                     Margin="5"
+                     ui:ControlHelper.Header="Имя сервера"/>
+            
+            <CheckBox Name="ArchiveCheckBox"
+                      Content="Не использовать архиватор"
+                      Margin="5"/>
         </StackPanel>
     </Grid>
 </Page>
