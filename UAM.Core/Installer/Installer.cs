@@ -7,18 +7,18 @@ namespace UAM.Core.Installer;
 
 public class Installer
 {
-    private ApiUpdate _apiUpdate = new ApiUpdate();
+    private readonly ApiUpdate _apiUpdate = new ApiUpdate();
 
     public async Task Install()
     {
-        // var arguments = Environment.GetCommandLineArgs();
-        //
-        // if (arguments.Length < 2)
-        //     throw new ArgumentNullException("version not specified");
+        var arguments = Environment.GetCommandLineArgs();
 
-        await _apiUpdate.GetUpdate("1.0.0");
+        if (arguments.Length < 2)
+            throw new ArgumentNullException("version not specified");
 
-        var path = "C:\\Users\\arshi\\RiderProjects\\UAManager\\ClientLauncher\\bin\\Release\\net8.0-windows";
+        await _apiUpdate.GetUpdate(arguments[1]);
+
+        var path = Environment.CurrentDirectory;
 
         var files = Directory.GetFiles(path);
 
@@ -26,7 +26,10 @@ public class Installer
 
         foreach (var file in files)
         {
-            if (file.EndsWith("ClientLauncher.exe"))
+            if (file.EndsWith(".exe"))
+                continue;
+
+            if (file.EndsWith(".dll"))
                 continue;
 
             File.Delete(file);
@@ -45,6 +48,42 @@ public class Installer
             Directory.Delete(directory);
         }
 
-        ZipFile.ExtractToDirectory("updates/1.0.0", path);
+        ZipFile.ExtractToDirectory("updates/1.0.0.zip", path);
+    }
+
+    public async Task InstallLastUpdate()
+    {
+        await _apiUpdate.GetLastUpdate();
+        var path = Environment.CurrentDirectory;
+
+        var files = Directory.GetFiles(path);
+
+        var directories = Directory.GetDirectories(path);
+
+        foreach (var file in files)
+        {
+            if (file.EndsWith(".exe"))
+                continue;
+
+            if (file.EndsWith(".dll"))
+                continue;
+
+            File.Delete(file);
+        }
+
+        foreach (var directory in directories)
+        {
+            if (directory.EndsWith("updates"))
+                continue;
+
+            foreach (var file in Directory.GetFiles(directory))
+            {
+                File.Delete(file);
+            }
+
+            Directory.Delete(directory);
+        }
+
+        ZipFile.ExtractToDirectory("updates/1.0.0.zip", path);
     }
 }

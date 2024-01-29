@@ -7,7 +7,18 @@
       xmlns:local="clr-namespace:ClientLauncher.Pages"
       mc:Ignorable="d"
       Title="SettingsPage" Height="450" Width="800">
-    <Grid>
+    <Grid ShowGridLines="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         
+        <StackPanel Grid.Column="3"
+                    >
+            <TextBlock Text="Настройки"
+                   FontSize="20"/>
+        </StackPanel>
     </Grid>
 </Page>
