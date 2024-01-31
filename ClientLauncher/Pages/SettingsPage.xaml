@@ -16,8 +16,8 @@
 
         <StackPanel Grid.Column="0"
                     Margin="5">
-            <TextBlock Text="Настройки"
-                       FontSize="20" />
+            <Label Content="Настройки"
+                   FontSize="20" />
 
             <TextBox Name="ServerTextBox"
                      Margin="5"
@@ -37,11 +37,10 @@
                         <StackPanel>
                             <TextBlock Name="VersionBuildTextBlock"
                                        Text="{Binding Build}" />
-
                             <TextBlock Name="VersionTimeStampTextBlock"
-                                       Text="{Binding Timestamp}"/>
+                                       Text="{Binding Timestamp}" />
                             <TextBlock Name="VersionDescriptionTextBlock"
-                                       Text="{Binding Description}"/>
+                                       Text="{Binding Description}" />
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
