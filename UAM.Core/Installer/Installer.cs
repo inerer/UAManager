@@ -15,6 +15,7 @@ public class Installer
         //
         // if (arguments.Length < 2)
         //     throw new ArgumentNullException("version not specified");
+        Thread.Sleep(2000);
 
         await _apiUpdate.GetUpdate(version);
 
@@ -24,35 +25,41 @@ public class Installer
 
         var directories = Directory.GetDirectories(path);
 
-        // foreach (var file in files)
-        // {
-        //     if (file.StartsWith("LoadLauncher.exe"))
-        //         continue;
-        //
-        //     if (file.EndsWith(".dll"))
-        //         continue;
-        //
-        //     File.Delete(file);
-        // }
-        //
-        // foreach (var directory in directories)
-        // {
-        //     if (directory.EndsWith("updates"))
-        //         continue;
-        //
-        //     var filesFromDirectory = Directory.GetFiles(directory);
-        //
-        //     foreach (var file in filesFromDirectory)
-        //     {
-        //         if (file.EndsWith(".dll"))
-        //             continue;
-        //
-        //         File.Delete(file);
-        //     }
-        //
-        //     if (filesFromDirectory.Length == 0)
-        //         Directory.Delete(directory);
-        // }
+        foreach (var file in files)
+        {
+            if (file.Contains("LoadLauncher"))
+                continue;
+        
+            if (file.EndsWith(".dll"))
+                continue;
+            
+            if(file.EndsWith(".pdb"))
+                continue;
+            
+            if(file.EndsWith(".json"))
+                continue;
+        
+            File.Delete(file);
+        }
+        
+        foreach (var directory in directories)
+        {
+            if (directory.Contains("updates"))
+                continue;
+        
+            var filesFromDirectory = Directory.GetFiles(directory);
+        
+            foreach (var file in filesFromDirectory)
+            {
+                if (file.EndsWith(".dll"))
+                    continue;
+        
+                File.Delete(file);
+            }
+        
+            if (filesFromDirectory.Length == 0)
+                Directory.Delete(directory);
+        }
 
         ZipFile.ExtractToDirectory($"updates/{version}.zip",
             path,

@@ -21,7 +21,7 @@
 
             <TextBox Name="ServerTextBox"
                      Margin="5"
-                     ui:ControlHelper.Header="Имя сервераyty" />
+                     ui:ControlHelper.Header="Имя сервера" />
 
             <CheckBox Name="ArchiveCheckBox"
                       Content="Не использовать архиватор"
