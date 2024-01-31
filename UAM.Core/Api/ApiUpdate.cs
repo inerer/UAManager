@@ -4,12 +4,13 @@ using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
+using Version = UAM.Core.Models.Version;
 
 namespace UAM.Core.Api;
 
 public class ApiUpdate : ApiBase
 {
-    public async Task<List<Version>> GetAllVersions()
+    public async Task<List<Models.Version>> GetAllVersions()
     {
         var client = HttpClient;
 

@@ -17,4 +17,9 @@
       <Folder Include="Views\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\LoadLauncher\LoadLauncher.csproj" />
+      <ProjectReference Include="..\UAM.Core\UAM.Core.csproj" />
+    </ItemGroup>
+
 </Project>

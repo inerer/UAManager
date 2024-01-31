@@ -21,11 +21,32 @@
 
             <TextBox Name="ServerTextBox"
                      Margin="5"
-                     ui:ControlHelper.Header="Имя сервера"/>
-            
+                     ui:ControlHelper.Header="Имя сервераyty" />
+
             <CheckBox Name="ArchiveCheckBox"
                       Content="Не использовать архиватор"
-                      Margin="5"/>
+                      Margin="5" />
+
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.ColumnSpan="2">
+            <ListView Name="VersionsListView"
+                      SelectionChanged="VersionsListView_OnSelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Name="VersionBuildTextBlock"
+                                       Text="{Binding Build}" />
+
+                            <TextBlock Name="VersionTimeStampTextBlock"
+                                       Text="{Binding Timestamp}"/>
+                            <TextBlock Name="VersionDescriptionTextBlock"
+                                       Text="{Binding Description}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
         </StackPanel>
     </Grid>
 </Page>

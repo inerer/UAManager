@@ -12,7 +12,5 @@ public partial class App : Application
 {
     private async void App_OnStartup(object sender, StartupEventArgs e)
     {
-        Installer installer = new Installer();
-        await installer.Install();
     }
 }
