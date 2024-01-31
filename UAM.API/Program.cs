@@ -29,6 +29,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.Map("/", async context =>
+{
+    await context.Response.WriteAsync("available");
+});
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();

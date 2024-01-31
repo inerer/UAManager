@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace UAM.API.Models;
 
@@ -17,5 +18,6 @@ public partial class Version
 
     public string Path { get; set; } = null!;
 
+    [JsonIgnore]
     public virtual ICollection<VersionDependency> VersionDependencies { get; set; } = new List<VersionDependency>();
 }
