@@ -5,11 +5,16 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using Version = UAM.Core.Models.Version;
+using VersionSystem = System.Version;
 
 namespace UAM.Core.Api;
 
 public class ApiUpdate : ApiBase
 {
+    public ApiUpdate(string baseUrl) : base(baseUrl)
+    {
+    }
+
     public async Task<List<Models.Version>> GetAllVersions()
     {
         var client = HttpClient;
@@ -62,7 +67,7 @@ public class ApiUpdate : ApiBase
         }
     }
 
-    public async Task<string> GetLastUpdate()
+    public async Task<VersionSystem> GetLastUpdate()
     {
         var client = HttpClient;
 
@@ -73,7 +78,7 @@ public class ApiUpdate : ApiBase
             PropertyNameCaseInsensitive = true
         };
 
-        return JsonSerializer.Deserialize<string>(res, options)!;
+        return ConvertStringToVersion(JsonSerializer.Deserialize<Version>(res, options)!.Build);
     }
 
     private void SaveStreamAsFile(string filePath, Stream inputStream, string fileName)
@@ -87,5 +92,41 @@ public class ApiUpdate : ApiBase
         string path = Path.Combine(filePath, fileName);
         using FileStream outputFileStream = new FileStream(path, FileMode.Create);
         inputStream.CopyTo(outputFileStream);
+    }
+    
+    private VersionSystem ConvertStringToVersion(string version)
+    {
+        int major, minor, build, revision = 0;
+
+        var splitVersion = version.Split(".");
+
+        if (splitVersion.Length is > 4 or < 3)
+            throw new Exception("Wrong version view");
+
+        if (int.TryParse(splitVersion[0], out int parseMajor))
+            major = parseMajor;
+        else
+            throw new Exception("Wrong version view");
+
+        if (int.TryParse(splitVersion[1], out int parseMinor))
+            minor = parseMinor;
+        else
+            throw new Exception("Wrong version view");
+
+        if (int.TryParse(splitVersion[2], out int parseBuild))
+            build = parseBuild;
+        else
+            throw new Exception("Wrong version view");
+
+        if (splitVersion.Length == 4)
+        {
+            if (!int.TryParse(splitVersion[2], out int parseRevision))
+                throw new Exception("Wrong version view");
+
+            revision = parseRevision;
+            return new VersionSystem(major, minor, build, revision);
+        }
+
+        return new VersionSystem(major, minor, build);
     }
 }

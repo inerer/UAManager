@@ -4,6 +4,7 @@ using System.Windows.Shapes;
 using UAM.Core;
 using UAM.Core.Api;
 using UAM.Core.Installer;
+using UAM.Core.SaveInfo;
 using Path = System.IO.Path;
 using Version = ClientLauncher.Models.Version;
 
@@ -12,12 +13,26 @@ namespace ClientLauncher.Pages;
 
 public partial class SettingsPage : Page
 {
-    private ApiUpdate _apiUpdate = new ApiUpdate();
+    private readonly ApiUpdate _apiUpdate = new(AppSettings.Get().ServerName.First());
+    private AppSettingsBase _appSettings;
 
     public SettingsPage()
     {
-        InitializeComponent();
-        GetListAllVersions();
+        try
+        {
+            InitializeComponent();
+            GetListAllVersions();
+            _appSettings = AppSettings.Get();
+            AutoUpdateCheckBox.IsChecked = _appSettings.AutoCheckUpdates;
+            StopAutoUpdateForErrorCheckBox.IsChecked = _appSettings.StopAutoCheckWhenErrors;
+            ArchiveCheckBox.IsChecked = _appSettings.UseArchiver;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            NavigationService.Navigate(new ErrorPage(e.Message));
+        }
+        
     }
 
     private void VersionsListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -29,7 +44,28 @@ public partial class SettingsPage : Page
 
     private async void GetListAllVersions()
     {
-        var versions = await _apiUpdate.GetAllVersions();
-        VersionsListView.ItemsSource = versions;
+        try
+        {
+            var versions = await _apiUpdate.GetAllVersions();
+            VersionsListView.ItemsSource = versions;
+        }
+        catch (Exception e)
+        {
+            NavigationService.Navigate(new ErrorPage(e.Message));
+        }
+        
+    }
+
+    private void SaveSettingButton_OnClick(object sender, RoutedEventArgs e)
+    {
+        _appSettings.AutoCheckUpdates = (bool)AutoUpdateCheckBox.IsChecked!;
+        _appSettings.StopAutoCheckWhenErrors = (bool)StopAutoUpdateForErrorCheckBox.IsChecked!;
+        _appSettings.UseArchiver = (bool)ArchiveCheckBox.IsChecked!;
+        AppSettings.Set(_appSettings);
+    }
+
+    private void ResetSettingButton_OnClick(object sender, RoutedEventArgs e)
+    {
+        AppSettings.SetAppSettingsDefault();
     }
 }

@@ -17,9 +17,22 @@ namespace ClientLauncher;
 /// </summary>
 public partial class MainWindow : Window
 {
+    
+
     public MainWindow()
     {
-        InitializeComponent();
-        MainFrame.Navigate(new SettingsPage());
+        try
+        {
+            InitializeComponent();
+            MainFrame.Navigate(new SettingsPage());
+            
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            MainFrame.Navigate(new ErrorPage(e.Message));
+        }
+        
+
     }
 }

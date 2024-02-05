@@ -9,17 +9,18 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="MailKit" Version="4.3.0" />
       <PackageReference Include="ModernWpfUI" Version="0.9.6" />
       <PackageReference Include="ModernWpfUI.MahApps" Version="0.9.5" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Views\" />
+      <ProjectReference Include="..\LoadLauncher\LoadLauncher.csproj" />
+      <ProjectReference Include="..\UAM.Core\UAM.Core.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\LoadLauncher\LoadLauncher.csproj" />
-      <ProjectReference Include="..\UAM.Core\UAM.Core.csproj" />
+      <Folder Include="Dialog\" />
     </ItemGroup>
 
 </Project>

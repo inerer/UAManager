@@ -9,6 +9,7 @@
         Title="MainWindow" Height="450" Width="800"
         ui:WindowHelper.UseModernWindowStyle="True">
     <Grid>
-        <Frame Name="MainFrame"/>
+        <Frame Name="MainFrame" NavigationUIVisibility="Hidden"/>
+       
     </Grid>
 </Window>

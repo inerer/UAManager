@@ -2,12 +2,15 @@
 using System.IO.Compression;
 using System.Threading.Tasks;
 using UAM.Core.Api;
+using UAM.Core.SaveInfo;
+using Settings = UAM.Core.SaveInfo.AppSettings;
 
 namespace UAM.Core.Installer;
 
 public class Installer
 {
-    private readonly ApiUpdate _apiUpdate = new ApiUpdate();
+    private readonly AppSettingsBase _appSettings = Settings.Get();
+    private ApiUpdate ApiUpdate => new(_appSettings.ServerName.First());
 
     public async Task Install(string version)
     {
@@ -17,7 +20,7 @@ public class Installer
         //     throw new ArgumentNullException("version not specified");
         Thread.Sleep(2000);
 
-        await _apiUpdate.GetUpdate(version);
+        await ApiUpdate.GetUpdate(version);
 
         var path = Environment.CurrentDirectory;
 
@@ -68,7 +71,7 @@ public class Installer
 
     public async Task InstallLastUpdate()
     {
-        await _apiUpdate.GetLastUpdate();
+        await ApiUpdate.GetLastUpdate();
         var path = Environment.CurrentDirectory;
 
         var files = Directory.GetFiles(path);
