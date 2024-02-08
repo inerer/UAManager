@@ -11,17 +11,17 @@ public class ExceptionSender
         string info = $"Версия ос: {Assembly.GetExecutingAssembly().GetName().Version}\n" +
                       $"Ядер процессора: {Environment.ProcessorCount}\n" +
                       $"64 битная система: {Environment.Is64BitProcess}\n";
-        
+
         var gcMemoryInfo = GC.GetGCMemoryInfo();
         long installedMemory = gcMemoryInfo.TotalAvailableMemoryBytes;
         // it will give the size of memory in MB
-        var physicalMemory = (double) installedMemory / 1048576.0;
+        var physicalMemory = (double)installedMemory / 1048576.0;
         info += $"Ram: {physicalMemory}MB\n";
 
-        string sendTo = "supprtinstallerapk220@mail.ru";
+        string sendTo = "suuupportserpkoll@mail.ru";
 
-        string login = "serpractise@gmail.com";
-        string password = "123456789ad";
+        string login = "testemailsup@mail.ru";
+        string password = "sMkApyqicjTf7fEhpReF";
 
         using var emailMessage = new MimeMessage();
 
@@ -46,7 +46,5 @@ public class ExceptionSender
 
             await client.DisconnectAsync(true);
         }
-
-
     }
 }

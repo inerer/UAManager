@@ -7,6 +7,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <TextBlock Text="Пользователь: " Margin="5"/>
+            <ComboBox DisplayMemberPath="Role.Name" Name="RoleComboBox" Width="150" Margin="5" Height="25"
+                      SelectionChanged="RoleComboBox_OnSelectionChanged">
+            </ComboBox>
+        </StackPanel>
 
+        <Frame Grid.Row="1" Name="MainFrame" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>

@@ -69,6 +69,7 @@ namespace UAM.API.Controllers
         }
 
         [HttpPost("[action]")]
+        [RequestSizeLimit(100_000_000)]
         public async Task<IActionResult> AddUpdate(IFormFile uploadedFile)
         {
             if (uploadedFile.ContentType != "application/x-zip-compressed")

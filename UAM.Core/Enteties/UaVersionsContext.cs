@@ -21,6 +21,8 @@ public partial class UaVersionsContext : DbContext
 
     public virtual DbSet<Problem> Problems { get; set; }
 
+    public virtual DbSet<Role> Roles { get; set; }
+
     public virtual DbSet<Status> Statuses { get; set; }
 
     public virtual DbSet<Version> Versions { get; set; }
@@ -91,6 +93,18 @@ public partial class UaVersionsContext : DbContext
                 .HasConstraintName("problem_worker_id_fkey");
         });
 
+        modelBuilder.Entity<Role>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("role_pkey");
+
+            entity.ToTable("role");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Name)
+                .HasMaxLength(50)
+                .HasColumnName("name");
+        });
+
         modelBuilder.Entity<Status>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("status_pkey");
@@ -150,6 +164,11 @@ public partial class UaVersionsContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.FullName).HasColumnName("full_name");
+            entity.Property(e => e.RoleId).HasColumnName("role_id");
+
+            entity.HasOne(d => d.Role).WithMany(p => p.Workers)
+                .HasForeignKey(d => d.RoleId)
+                .HasConstraintName("worker_role_id_fkey");
         });
 
         OnModelCreatingPartial(modelBuilder);

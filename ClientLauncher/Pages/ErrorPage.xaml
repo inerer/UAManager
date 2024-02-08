@@ -2,12 +2,13 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:ui="http://schemas.modernwpf.com/2019"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:ClientLauncher.Pages"
       mc:Ignorable="d"
       Title="ErrorPage" Height="450" Width="800">
     <Grid>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="80*" />
             <RowDefinition Height="20*" />
@@ -15,16 +16,16 @@
 
         <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical"
                     Margin="20">
-            <TextBlock FontSize="18" Text="Возникла непредвиденная ошибка" />
-            <TextBlock FontSize="16"
-                       Text="Мы уже работаем над этим, если хотите пполучить помощь или узнать о статусе решения, пожалуйста, оставьте свою почту"
-                       TextWrapping="Wrap" />
-            <TextBlock Text="Почта:" Margin="5" />
+            <Label FontSize="18" Content="Возникла непредвиденная ошибка" />
+            <Label FontSize="16"
+                       Content="Мы уже работаем над этим"
+                        />
+            <Label Content="Почта:" Margin="5" />
             <TextBox Width="250" Height="25" HorizontalAlignment="Left" Margin="5" Name="EmailTextBox" />
         </StackPanel>
 
-        <StackPanel Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
-            <Button Name="RestartButton" Click="RestartButton_OnClick" Height="40" Width="100" Content="Перезапустить"
+        <StackPanel Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
+            <Button Name="RestartButton" Click="RestartButton_OnClick" Height="40" Width="100" Content="Перезапуск"
                     Margin="5" />
             <Button Name="CloseButton" Click="CloseButton_OnClick" Height="40" Width="100" Content="Закрыть" Margin="5" />
         </StackPanel>

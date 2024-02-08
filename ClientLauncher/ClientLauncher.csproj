@@ -23,4 +23,8 @@
       <Folder Include="Dialog\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="photo_2024-02-08_09-57-33.jpg" />
+    </ItemGroup>
+
 </Project>

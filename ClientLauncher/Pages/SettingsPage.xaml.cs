@@ -24,7 +24,7 @@ public partial class SettingsPage : Page
             GetListAllVersions();
             _appSettings = AppSettings.Get();
             AutoUpdateCheckBox.IsChecked = _appSettings.AutoCheckUpdates;
-            StopAutoUpdateForErrorCheckBox.IsChecked = _appSettings.StopAutoCheckWhenErrors;
+            // StopAutoUpdateForErrorCheckBox.IsChecked = _appSettings.StopAutoCheckWhenErrors;
             ArchiveCheckBox.IsChecked = _appSettings.UseArchiver;
         }
         catch (Exception e)
@@ -59,7 +59,7 @@ public partial class SettingsPage : Page
     private void SaveSettingButton_OnClick(object sender, RoutedEventArgs e)
     {
         _appSettings.AutoCheckUpdates = (bool)AutoUpdateCheckBox.IsChecked!;
-        _appSettings.StopAutoCheckWhenErrors = (bool)StopAutoUpdateForErrorCheckBox.IsChecked!;
+        // _appSettings.StopAutoCheckWhenErrors = (bool)StopAutoUpdateForErrorCheckBox.IsChecked!;
         _appSettings.UseArchiver = (bool)ArchiveCheckBox.IsChecked!;
         AppSettings.Set(_appSettings);
     }
@@ -67,5 +67,18 @@ public partial class SettingsPage : Page
     private void ResetSettingButton_OnClick(object sender, RoutedEventArgs e)
     {
         AppSettings.SetAppSettingsDefault();
+    }
+
+    private void ExButton_OnClick(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            throw new Exception("Тестовая ошибка");
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine(exception);
+            NavigationService.Navigate(new ErrorPage(exception.Message));
+        }
     }
 }

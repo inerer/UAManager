@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using UAM.Core.EmailException;
@@ -50,6 +51,6 @@ public partial class ErrorPage : Page
 
         await ExceptionSender.SendEmailAsync(_error, _email);
 
-        NavigationService.Navigate(new SettingsPage());
+        Application.Current.Shutdown();
     }
 }

@@ -9,5 +9,9 @@ public partial class Worker
 
     public string FullName { get; set; } = null!;
 
+    public int? RoleId { get; set; }
+
     public virtual ICollection<Problem> Problems { get; set; } = new List<Problem>();
+
+    public virtual Role? Role { get; set; }
 }
