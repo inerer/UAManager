@@ -11,6 +11,8 @@ public partial class Worker
 
     public int? RoleId { get; set; }
 
+    public string? Password { get; set; }
+
     public virtual ICollection<Problem> Problems { get; set; } = new List<Problem>();
 
     public virtual Role? Role { get; set; }

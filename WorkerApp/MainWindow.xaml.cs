@@ -34,7 +34,7 @@ public partial class MainWindow : Window
         if (worker.RoleId == 1)
             MainFrame.Navigate(new ProblemEditPage());
         else
-            MainFrame.Navigate(new WorkerPage());
+            MainFrame.Navigate(new WorkerPage(worker));
     }
 
     private async void ComboBoxRendered()

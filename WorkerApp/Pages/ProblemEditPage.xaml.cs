@@ -35,7 +35,7 @@ public partial class ProblemEditPage : Page
 	{
 		var startTime = new DateTime(2000,1,1,1,5,0);
 
-		TimerTextBlock.Text = $"Осталось времени: {startTime:mm:ss}";
+		TimerTextBlock.Content = $"Осталось времени: {startTime:mm:ss}";
 
 		while (true)
 		{
@@ -71,7 +71,7 @@ public partial class ProblemEditPage : Page
 				ShowWork(currentWork!);
 			}
 
-			TimerTextBlock.Text = $"Осталось времени: {startTime:mm:ss}";
+			TimerTextBlock.Content = $"Осталось времени: {startTime:mm:ss}";
 		}
 	}
 
@@ -86,11 +86,11 @@ public partial class ProblemEditPage : Page
 		WorkerComboBox.SelectedIndex = 0;
 		currentWork.WorkerId = 1;
 
-		TaskTextBlock.Text = problem.ProblemText;
+		TaskTextBlock.Content = problem.ProblemText;
 
 		if (problem.Email != null)
 		{
-			EmailTextBlock.Text = $"Почта клиента: {problem.Email}";
+			EmailTextBlock.Content = $"Почта клиента: {problem.Email}";
 		}
 
 		StartTimer();

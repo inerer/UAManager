@@ -1,0 +1,44 @@
+﻿<Page x:Class="ClientLauncher.Pages.AuthPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:ClientLauncher.Pages"
+      xmlns:ui="http://schemas.modernwpf.com/2019"
+      mc:Ignorable="d"
+      Title="AuthPage" Height="450" Width="800">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top">
+            
+            <TextBlock Text="Авторизация" FontSize="30" Margin="50"></TextBlock>
+            
+        </StackPanel>
+       
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+            
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBox Name="LoginTextBox"
+                         FontSize="16"
+                         Height="32"
+                         Width="150"
+                         Margin="5"
+                         ui:ControlHelper.PlaceholderText="Логин">admin</TextBox>
+                <PasswordBox Name="PasswordBox" 
+                             FontSize="16" 
+                             Height="32"
+                             Width="150"
+                             Margin="5"
+                             Password="admin"
+                             ui:ControlHelper.PlaceholderText="Пароль"/>
+                    
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button Background="Transparent" Name="LoginButton" Width="100" Height="32" Margin="3" Content="Вход" Click="LoginButton_OnClick"/>
+                <Button Background="Transparent" Name="RegButton" Width="100" Height="32" Margin="3" Content="Регистрация" Click="RegButton_OnClickButton_OnClick"/>
+            </StackPanel>
+            
+           
+            
+        </StackPanel>
+    </Grid>
+</Page>

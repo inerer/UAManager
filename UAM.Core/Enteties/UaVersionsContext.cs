@@ -164,6 +164,7 @@ public partial class UaVersionsContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.FullName).HasColumnName("full_name");
+            entity.Property(e => e.Password).HasColumnName("password");
             entity.Property(e => e.RoleId).HasColumnName("role_id");
 
             entity.HasOne(d => d.Role).WithMany(p => p.Workers)
