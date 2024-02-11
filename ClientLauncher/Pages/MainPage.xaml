@@ -1,0 +1,48 @@
+﻿<Page x:Class="ClientLauncher.Pages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:ClientLauncher.Pages"
+      mc:Ignorable="d"
+      Title="MainPage" Height="450" Width="800">
+    <Grid ShowGridLines="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="60*"/>
+            <ColumnDefinition Width="20*"/>
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel Grid.Column="2">
+            <Button Content="Настройки"
+                    Name="SettingsButton"
+                    Click="SettingsButton_OnClick"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="1" Grid.RowSpan="2"
+                    Grid.Column="1">
+            <ListView Name="VersionsListView"
+                      SelectionChanged="TicketListView_OnSelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Name="VersionBuildTextBlock"
+                                       Text="{Binding Build}" />
+                            <TextBlock Name="VersionTimeStampTextBlock"
+                                       Text="{Binding Timestamp}" />
+                            <TextBlock Name="VersionDescriptionTextBlock"
+                                       Text="{Binding Description}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Page>

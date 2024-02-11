@@ -24,21 +24,27 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        ComboBoxRendered();
+        MainFrame.Navigate(new AuthPage());
+        if (MainFrame.CanGoBack)
+            BackButton.Visibility = Visibility.Collapsed;
     }
 
-    private void RoleComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+    // private void RoleComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+    // {
+    //     var worker = (Worker)RoleComboBox.SelectedItem;
+    //
+    //     if (worker.RoleId == 1)
+    //         MainFrame.Navigate(new ProblemEditPage());
+    //     else
+    //         MainFrame.Navigate(new WorkerPage(worker));
+    // }
+    //
+    // private async void ComboBoxRendered()
+    // {
+    //     RoleComboBox.ItemsSource = await _context.Workers.Include(w => w.Role).ToListAsync();
+    // }
+    private void BackButton_OnClick(object sender, RoutedEventArgs e)
     {
-        var worker = (Worker)RoleComboBox.SelectedItem;
-
-        if (worker.RoleId == 1)
-            MainFrame.Navigate(new ProblemEditPage());
-        else
-            MainFrame.Navigate(new WorkerPage(worker));
-    }
-
-    private async void ComboBoxRendered()
-    {
-        RoleComboBox.ItemsSource = await _context.Workers.Include(w => w.Role).ToListAsync();
+        MainFrame.Navigate(new AuthPage());
     }
 }

@@ -23,6 +23,10 @@ public partial class Problem
 
     public string? Email { get; set; }
 
+    public string? Solution { get; set; }
+
+    public string? Version { get; set; }
+
     public virtual Priority? Priority { get; set; }
 
     public virtual Status? Status { get; set; }

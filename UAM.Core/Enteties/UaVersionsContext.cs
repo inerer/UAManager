@@ -33,7 +33,7 @@ public partial class UaVersionsContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Host=5.188.141.251;Port=5432;Database=ua_versions;Username=admin;Password=admin");
+        => optionsBuilder.UseNpgsql("Host=5.188.140.220;Port=5432;Database=ua_versions;Username=admin;Password=admin");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -64,7 +64,7 @@ public partial class UaVersionsContext : DbContext
 
         modelBuilder.Entity<Problem>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("problem_pkey");
+            entity.HasKey(e => e.Id).HasName("problem_pk");
 
             entity.ToTable("problem");
 
@@ -76,8 +76,10 @@ public partial class UaVersionsContext : DbContext
             entity.Property(e => e.EndTime).HasColumnName("end_time");
             entity.Property(e => e.PriorityId).HasColumnName("priority_id");
             entity.Property(e => e.ProblemText).HasColumnName("problem_text");
+            entity.Property(e => e.Solution).HasColumnName("solution");
             entity.Property(e => e.StartTime).HasColumnName("start_time");
             entity.Property(e => e.StatusId).HasColumnName("status_id");
+            entity.Property(e => e.Version).HasColumnName("version");
             entity.Property(e => e.WorkerId).HasColumnName("worker_id");
 
             entity.HasOne(d => d.Priority).WithMany(p => p.Problems)

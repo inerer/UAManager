@@ -1,0 +1,105 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+@if (!Model.Logined)
+{
+    <div class="col-md">
+        <label>@Model.Message</label>
+        <form class="col-md-12" method="post">
+            <p>
+                <label class="form-label">Логин</label>
+            </p>
+            <p>
+                <input type="text" asp-for="Login"/>
+            </p>
+            <p>
+                <label class="form-label">Пароль</label>
+            </p>
+            <p>
+                <input type="password" asp-for="Password"/>
+            </p>
+            <button class="btn btn-secondary"
+                    style="margin-left: 50px">Войти</button>
+        </form>
+    </div>
+}
+else
+{
+    <div style="background-image: url('sakura.jpg');
+background-size: 100% 100%;">
+        <label style="margin-left: 1%; font-size: 24px">Список задач:</label>
+        <div class="card-deck">
+            @foreach (var work in Model.Works)
+            {
+                <div class="col-md-6" style="margin: 1%">
+                    <div class="card">
+                        <div class="card-body">
+                            <p>
+                                <label>Номер задачи: @work.Id</label>
+                            </p>
+                            <p>
+                                <label>Статус: @work.Status?.Name</label>
+                            </p>
+                            <p>
+                                <label>Приоритет: @work.Priority?.Name</label>
+                            </p>
+                            <p>
+                                <label>Создана: @work.CreatedTime?.ToString("d")</label>
+                            </p>
+                            @if (work.EndTime != null)
+                            {
+                                <p>
+                                    <label>Решена: @work.EndTime?.ToString("d")</label>
+                                </p>
+                            }
+                            @* done *@
+                            @if (work.StatusId == 4)
+                            {
+                                <p>
+                                    <label>Версия с решением: @work.Version</label>
+                                </p>
+                                <div class="accordion">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id=@String.Concat("heading_sol", work.Id.ToString())>
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target=@String.Concat("#collapse_sol", work.Id.ToString()) aria-expanded="true" aria-controls=@String.Concat("collapse_sol", work.Id.ToString())>
+                                                Показать Решение
+                                            </button>
+                                        </h2>
+                                        <div id=@String.Concat("collapse_sol", work.Id.ToString()) class="accordion-collapse collapse" aria-labelledby=@String.Concat("heading_sol", work.Id.ToString()) data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+                                                <p>
+                                                    <label style="white-space: pre-line;">@(work.Solution ?? "Нет решения")</label>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            <div class="accordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id=@String.Concat("heading", work.Id.ToString())>
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target=@String.Concat("#collapse", work.Id.ToString()) aria-expanded="true" aria-controls=@String.Concat("collapse", work.Id.ToString())>
+                                            Показать описание
+                                        </button>
+                                    </h2>
+                                    <div id=@String.Concat("collapse", work.Id.ToString()) class="accordion-collapse collapse" aria-labelledby=@String.Concat("heading", work.Id.ToString()) data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <p>
+                                                <label style="white-space: pre-line;">@work.ProblemText</label>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}

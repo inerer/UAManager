@@ -9,11 +9,11 @@
       <jdbc-url>jdbc:postgresql://localhost:5432/ua_versions</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="postgres@5.188.141.251" uuid="da8c55ab-02e5-4fe1-8a4b-f728e21ad31b">
+    <data-source source="LOCAL" name="postgres@5.188.140.220" uuid="8b2541fd-95bb-477e-a244-098cb8c71354">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://5.188.141.251:5432/postgres</jdbc-url>
+      <jdbc-url>jdbc:postgresql://5.188.140.220:5432/postgres</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

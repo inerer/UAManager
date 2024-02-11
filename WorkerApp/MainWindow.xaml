@@ -14,9 +14,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <ComboBox DisplayMemberPath="Role.Name" Name="RoleComboBox" Margin="5"
-                      SelectionChanged="RoleComboBox_OnSelectionChanged"
-                      ui:ControlHelper.Header="Пользователь"/>
+            <Button Name="BackButton" Click="BackButton_OnClick"/>
         </StackPanel>
 
         <Frame Grid.Row="1" Name="MainFrame" NavigationUIVisibility="Hidden" />

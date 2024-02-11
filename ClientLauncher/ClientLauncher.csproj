@@ -10,12 +10,16 @@
 
     <ItemGroup>
       <PackageReference Include="MailKit" Version="4.3.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.1">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
       <PackageReference Include="ModernWpfUI" Version="0.9.6" />
       <PackageReference Include="ModernWpfUI.MahApps" Version="0.9.5" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\LoadLauncher\LoadLauncher.csproj" />
       <ProjectReference Include="..\UAM.Core\UAM.Core.csproj" />
     </ItemGroup>
 

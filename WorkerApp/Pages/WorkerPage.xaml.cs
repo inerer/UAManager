@@ -119,7 +119,7 @@ public partial class WorkerPage : Page
         timer = timer.AddHours(1);
     }
 
-    private void SendSolButton_OnClick(object sender, RoutedEventArgs e)
+    private async void SendSolButton_OnClick(object sender, RoutedEventArgs e)
     {
         if (currentWork.Email == null)
         {
@@ -156,6 +156,8 @@ public partial class WorkerPage : Page
                 CloseButtonText = "Нет",
                 PrimaryButtonText = "Да",
             };
+
+            await contentDialog.ShowAsync();
 
             currentWork.EndTime = DateTime.UtcNow;
             currentWork.StatusId = 2;
