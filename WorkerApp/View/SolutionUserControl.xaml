@@ -3,14 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ui="http://schemas.modernwpf.com/2019"
              xmlns:local="clr-namespace:WorkerApp.View"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="350" d:DesignWidth="800">
     <Grid>
-        <StackPanel Orientation="Vertical">
-            <Label Margin="5" Content="Решение задачи:"/>
-            <Label Margin="5" Name="SolutionTextBox" Height="250"/>
-            <Button Width="150" Height="25" Content="Отправить" HorizontalAlignment="Left" Margin="5" Name="SendButton" Click="SendButton_OnClick"></Button>
-        </StackPanel>
+        
+            
+            <ScrollViewer>
+                <StackPanel Orientation="Vertical">
+                    <TextBox Margin="5" Name="SolutionTextBox" Height="250"
+                             ui:ControlHelper.Header="Решение" />
+                    <TextBox Margin="5" Name="VersionTextBox" TextWrapping="Wrap" Height="25"
+                             ui:ControlHelper.Header="Версия"/>
+                    <Button Width="150" Height="40" Content="Отправить" HorizontalAlignment="Center" Margin="5" Name="SendButton" Click="SendButton_OnClick"/>
+                </StackPanel>
+            </ScrollViewer>
+        
     </Grid>
 </UserControl>

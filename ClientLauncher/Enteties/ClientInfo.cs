@@ -12,6 +12,8 @@ public partial class ClientInfo
     public string FirstName { get; set; } = null!;
 
     public string? MiddleName { get; set; }
+    
+    public string? FIO => $"{LastName} {FirstName[0]}. {MiddleName[0]}.";
 
     public int? PassportInfoId { get; set; }
 

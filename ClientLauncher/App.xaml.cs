@@ -19,7 +19,7 @@ public partial class App : Application
 {
     private async void Test()
     {
-        var api = new ApiUpdate("http://5.188.141.251/");
+        var api = new ApiUpdate("https://localhost:7206/");
         var lastVersion = await api.GetLastUpdate();
         Process.Start("LoadLauncher.exe", lastVersion.ToString());
         Current.Shutdown();
@@ -34,7 +34,7 @@ public partial class App : Application
         if (!settings.AutoCheckUpdates) return;
         try
         {
-            var api = new ApiUpdate("http://5.188.141.251/");
+            var api = new ApiUpdate("https://localhost:7206/");
             var lastVersion = await api.GetLastUpdate();
             var currentVersion = Assembly.GetExecutingAssembly().GetName().Version;
 

@@ -6,43 +6,86 @@
       xmlns:local="clr-namespace:ClientLauncher.Pages"
       mc:Ignorable="d"
       Title="MainPage" Height="450" Width="800">
-    <Grid ShowGridLines="True">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="10*"/>
-            <RowDefinition Height="10*"/>
-            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="10*" />
         </Grid.RowDefinitions>
-        
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20*"/>
-            <ColumnDefinition Width="60*"/>
-            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="20*" />
+            <ColumnDefinition Width="60*" />
+            <ColumnDefinition Width="20*" />
         </Grid.ColumnDefinitions>
-        
-        <StackPanel Grid.Column="2">
+
+        <StackPanel Grid.Column="2"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
             <Button Content="Настройки"
                     Name="SettingsButton"
-                    Click="SettingsButton_OnClick"/>
+                    Click="SettingsButton_OnClick" />
         </StackPanel>
-        
+
+        <StackPanel>
+            <Label Name="WorkerNameLabel" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="0"
+                    Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <Label Content="Список билетов оформленных вами" />
+        </StackPanel>
+
         <StackPanel Grid.Row="1" Grid.RowSpan="2"
                     Grid.Column="1">
-            <ListView Name="VersionsListView"
-                      SelectionChanged="TicketListView_OnSelectionChanged">
+            <ListView Name="TicketsListView"
+                      >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
                             <TextBlock Name="VersionBuildTextBlock"
-                                       Text="{Binding Build}" />
+                                       Text="{Binding Id}" />
                             <TextBlock Name="VersionTimeStampTextBlock"
-                                       Text="{Binding Timestamp}" />
+                                       Text="{Binding ClientInfo.FIO}" />
                             <TextBlock Name="VersionDescriptionTextBlock"
-                                       Text="{Binding Description}" />
+                                       Text="{Binding DateRegistration}" />
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
 
             </ListView>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <Button Content="Создать билет"
+                    Name="AddTicketButton"
+                    Click="AddTicketButton_OnClick" />
+            <!-- <Button Content="Создать абонимент" -->
+            <!--         Name="AddSubscription" -->
+            <!--         Click="AddSubscription_OnClick" /> -->
+
+        </StackPanel>
+        
+        <StackPanel Grid.Row="1" Grid.Column="2">
+            <Button Name="EditButton"
+                    Content="Изменить"
+                    Click="EditButton_OnClick"
+                    Margin="5"/>
+            
+            <Button Name="DeleteButton"
+                    Content="Удалить"
+                    Click="DeleteButton_OnClick"
+                    Margin="5"/>
+            
+            <Button Name="PrintDocumentButton"
+                    Content="Печать"
+                    Click="PrintDocumentButton_OnClick"
+                    Margin="5"/>
+            
         </StackPanel>
     </Grid>
 </Page>

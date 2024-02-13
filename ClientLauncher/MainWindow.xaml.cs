@@ -24,7 +24,7 @@ public partial class MainWindow : Window
         try
         {
             InitializeComponent();
-            MainFrame.Navigate(new SettingsPage());
+            MainFrame.Navigate(new AuthPage());
             
         }
         catch (Exception e)

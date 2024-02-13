@@ -22,19 +22,18 @@
                          Height="32"
                          Width="150"
                          Margin="5"
-                         ui:ControlHelper.PlaceholderText="Логин">admin</TextBox>
+                         ui:ControlHelper.PlaceholderText="Логин"/>
                 <PasswordBox Name="PasswordBox" 
                              FontSize="16" 
                              Height="32"
                              Width="150"
                              Margin="5"
-                             Password="admin"
                              ui:ControlHelper.PlaceholderText="Пароль"/>
                     
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button Background="Transparent" Name="LoginButton" Width="100" Height="32" Margin="3" Content="Вход" Click="LoginButton_OnClick"/>
-                <Button Background="Transparent" Name="RegButton" Width="100" Height="32" Margin="3" Content="Регистрация" Click="RegButton_OnClickButton_OnClick"/>
+                <!-- <Button Background="Transparent" Name="RegButton" Width="100" Height="32" Margin="3" Content="Регистрация" Click="RegButton_OnClickButton_OnClick"/> -->
             </StackPanel>
             
            

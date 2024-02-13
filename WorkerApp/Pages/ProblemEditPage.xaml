@@ -13,11 +13,11 @@
             <Label Name="EmailTextBlock" Margin="5" />
             <ComboBox Name="PriorityComboBox" DisplayMemberPath="Name" Margin="5"
                       SelectionChanged="PriorityComboBox_OnSelectionChanged"
-                      Width="150" Height="25" />
+                      Width="150" Height="40" />
             <ComboBox Name="WorkerComboBox" DisplayMemberPath="FullName" Margin="5"
                       SelectionChanged="WorkerComboBox_OnSelectionChanged"
-                      Width="150" Height="25" />
-            <Button Width="150" Height="25" Content="Подтвердить" Margin="5" Name="SaveButton"
+                      Width="150" Height="40" />
+            <Button Width="150" Height="40" Content="Подтвердить" Margin="5" Name="SaveButton"
                     Click="SaveButton_OnClick" />
         </StackPanel>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center"

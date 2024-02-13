@@ -152,7 +152,7 @@ public partial class WorkerPage : Page
             ContentDialog contentDialog = new ContentDialog
             {
                 Title = "Подтверждение",
-                Content = new SolutionUserControl(currentWork.Email),
+                Content = new SolutionUserControl(currentWork.Email, currentWork.Id),
                 CloseButtonText = "Нет",
                 PrimaryButtonText = "Да",
             };

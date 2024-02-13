@@ -8,30 +8,37 @@
       Title="WorkerPage" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0">
-            <Label Name="WorkerTextBlock" Margin="5"/>
+            <Label Name="WorkerTextBlock" Margin="5" />
         </StackPanel>
 
         <StackPanel Grid.Row="1" Name="TaskStackPanel">
-            <Label Name="TaskTextBlock" Margin="5"/>
-            <Label Name="TimerTextBlock" Margin="5"/>
-            <Label Name="EmailTextBlock" Margin="5"/>
+            <Label Name="TaskTextBlock" Margin="5" />
+            <Label Name="TimerTextBlock" Margin="5" />
+            <Label Name="EmailTextBlock" Margin="5" />
             <StackPanel Orientation="Vertical">
-                <Button Name="NotWorkButton" Content="Задача не может быть решена мною" Margin="5" Width="250" Height="25" Click="NotWorkButton_OnClick"/>
-                <Button Name="MoreTime" Content="Нужно больше времени" Margin="5" Width="250" Height="25" Click="MoreTime_OnClick"/>
-                <Button Name="SendSolButton" Content="Прислать решение" Margin="5" Width="250" Height="25" Click="SendSolButton_OnClick"/>
+                <Button Name="NotWorkButton" Content="Задача не может быть решена мною"
+                        Margin="5" Width="300" Height="40"
+                        Click="NotWorkButton_OnClick" />
+                <Button Name="MoreTime" Content="Нужно больше времени"
+                        Margin="5" Width="250" Height="40"
+                        Click="MoreTime_OnClick" />
+                <Button Name="SendSolButton" Content="Прислать решение"
+                        Margin="5" Width="250" Height="40"
+                        Click="SendSolButton_OnClick" />
             </StackPanel>
         </StackPanel>
 
 
-
         <StackPanel Grid.Row="1" Name="NothingShowStackPanel">
-            <Label FontSize="20" Content="Нет задач"/>
-            <Button Content="Обновить" Margin="5" Width="125" Height="25" Name="RefreshButton" Click="RefreshButton_OnClick"/>
+            <Label FontSize="20" Content="Нет задач" />
+            <Button Content="Обновить" Margin="5"
+                    Width="125" Height="40" Name="RefreshButton"
+                    Click="RefreshButton_OnClick" />
         </StackPanel>
 
     </Grid>

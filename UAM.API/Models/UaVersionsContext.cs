@@ -17,13 +17,23 @@ public partial class UaVersionsContext : DbContext
 
     public virtual DbSet<Dependency> Dependencies { get; set; }
 
+    public virtual DbSet<Priority> Priorities { get; set; }
+
+    public virtual DbSet<Problem> Problems { get; set; }
+
+    public virtual DbSet<Role> Roles { get; set; }
+
+    public virtual DbSet<Status> Statuses { get; set; }
+
     public virtual DbSet<Version> Versions { get; set; }
 
     public virtual DbSet<VersionDependency> VersionDependencies { get; set; }
 
+    public virtual DbSet<Worker> Workers { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=ua_versions;Username=admin;Password=admin");
+        => optionsBuilder.UseNpgsql("Host=5.188.140.220;Port=5432;Database=ua_versions;Username=admin;Password=admin");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -38,6 +48,75 @@ public partial class UaVersionsContext : DbContext
                 .HasColumnName("id");
             entity.Property(e => e.Name).HasColumnName("name");
             entity.Property(e => e.Version).HasColumnName("version");
+        });
+
+        modelBuilder.Entity<Priority>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("priority_pkey");
+
+            entity.ToTable("priority");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Name)
+                .HasMaxLength(50)
+                .HasColumnName("name");
+        });
+
+        modelBuilder.Entity<Problem>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("problem_pk");
+
+            entity.ToTable("problem");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.CreatedTime)
+                .HasDefaultValueSql("now()")
+                .HasColumnName("created_time");
+            entity.Property(e => e.Email).HasColumnName("email");
+            entity.Property(e => e.EndTime).HasColumnName("end_time");
+            entity.Property(e => e.PriorityId).HasColumnName("priority_id");
+            entity.Property(e => e.ProblemText).HasColumnName("problem_text");
+            entity.Property(e => e.Solution).HasColumnName("solution");
+            entity.Property(e => e.StartTime).HasColumnName("start_time");
+            entity.Property(e => e.StatusId).HasColumnName("status_id");
+            entity.Property(e => e.Version).HasColumnName("version");
+            entity.Property(e => e.WorkerId).HasColumnName("worker_id");
+
+            entity.HasOne(d => d.Priority).WithMany(p => p.Problems)
+                .HasForeignKey(d => d.PriorityId)
+                .HasConstraintName("problem_priority_id_fkey");
+
+            entity.HasOne(d => d.Status).WithMany(p => p.Problems)
+                .HasForeignKey(d => d.StatusId)
+                .HasConstraintName("problem_status_id_fkey");
+
+            entity.HasOne(d => d.Worker).WithMany(p => p.Problems)
+                .HasForeignKey(d => d.WorkerId)
+                .HasConstraintName("problem_worker_id_fkey");
+        });
+
+        modelBuilder.Entity<Role>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("role_pkey");
+
+            entity.ToTable("role");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Name)
+                .HasMaxLength(50)
+                .HasColumnName("name");
+        });
+
+        modelBuilder.Entity<Status>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("status_pkey");
+
+            entity.ToTable("status");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Name)
+                .HasMaxLength(50)
+                .HasColumnName("name");
         });
 
         modelBuilder.Entity<Version>(entity =>
@@ -77,6 +156,22 @@ public partial class UaVersionsContext : DbContext
                 .HasForeignKey(d => d.VersionId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("version_dependencies_version_id_fkey");
+        });
+
+        modelBuilder.Entity<Worker>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("worker_pkey");
+
+            entity.ToTable("worker");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.FullName).HasColumnName("full_name");
+            entity.Property(e => e.Password).HasColumnName("password");
+            entity.Property(e => e.RoleId).HasColumnName("role_id");
+
+            entity.HasOne(d => d.Role).WithMany(p => p.Workers)
+                .HasForeignKey(d => d.RoleId)
+                .HasConstraintName("worker_role_id_fkey");
         });
 
         OnModelCreatingPartial(modelBuilder);

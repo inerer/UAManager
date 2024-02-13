@@ -22,7 +22,7 @@
             <TextBox Name="ServerTextBox"
                      Margin="5"
                      ui:ControlHelper.Header="Имя сервера"
-                     Text="http://5.188.141.251"/>
+                     Text="https://localhost"/>
 
             <CheckBox Name="ArchiveCheckBox"
                       Content="Не использовать архиватор"
@@ -58,7 +58,8 @@
 
         <StackPanel Grid.Column="1" Grid.ColumnSpan="2">
             <ListView Name="VersionsListView"
-                      SelectionChanged="VersionsListView_OnSelectionChanged">
+                      SelectionChanged="VersionsListView_OnSelectionChanged"
+                      Height="400">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>

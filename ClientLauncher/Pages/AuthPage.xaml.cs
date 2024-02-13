@@ -22,7 +22,7 @@ public partial class AuthPage : Page
         if (worker == null || worker.Password != PasswordBox.Password)
             throw new Exception("Неверный логин или парооль");
 
-        NavigationService.Navigate(new MainPage());
+        NavigationService.Navigate(new MainPage(worker));
     }
 
     private void RegButton_OnClickButton_OnClick(object sender, RoutedEventArgs e)

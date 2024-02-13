@@ -10,7 +10,7 @@ public class AppSettings
 
     private static AppSettingsBase DefaultSettings => new()
     {
-        ServerName = new List<string>{"http://5.188.141.251/"},
+        ServerName = new List<string>{"https://localhost:7206/"},
         AutoCheckUpdates = true,
         StopAutoCheckWhenErrors = true,
         UseArchiver = false

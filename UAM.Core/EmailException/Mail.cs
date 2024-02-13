@@ -16,7 +16,7 @@ public class Mail
         Console.OutputEncoding = Encoding.UTF8;
 
         string login = "suuupportserpkoll@mail.ru";
-        string password = "9Khm7bhyvtvp1bPb7ite";
+        string password = "t8ZrEHC4Hx7yeVxQ6tfc";
 
         using (var client = new ImapClient())
         {
@@ -82,7 +82,7 @@ public class Mail
     public static async Task SendEmailAsync(string email, string text)
     {
         string login = "suuupportserpkoll@mail.ru";
-        string password = "9Khm7bhyvtvp1bPb7ite";
+        string password = "t8ZrEHC4Hx7yeVxQ6tfc";
 
         using var emailMessage = new MimeMessage();
 
